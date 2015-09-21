@@ -11,13 +11,34 @@
     <div class="container" ng-controller="StudentsCtrl">
       <div class= "row">
         <div class= "column-md-12">
+
           <h2>Student List</h2>
             <ul>
             <li ng-repeat="item in students">
-                {{ item.name }}
+
+              <span ng-click="editing = true" ng-hide="editing">
+                {{ item.name }} <a ng-click="deleteStudent(item)">Delete Student</a>
+              </span>
+
+              <span class="form-group" ng-show="editing" ng-submit="editing = false">
+                <form class="form-inline" role="form">
+                  <input type="text" class="form-control input-sm" ng-model="item.name" placeholder="Name" required/>
+                  <button class="btn btn-default btn-sm" type="submit">Save</button>
+                </form>
+              </span>
+
             </li>
             </ul>
 
+        </div>
+
+        <div class="col-md-4">
+          <form ng-submit="addStudent()" class="form-inline" role="form">
+            <div class="form-group">
+              <input type="text" ng-model="studentName" class="form-control" placeholder="Enter Name">
+            </div>
+            <button class="btn btn-default" type="submit">Enter</button>
+          </form>
         </div>
       </div>
     </div>
