@@ -10,7 +10,7 @@
   <body>
     <div class="container" ng-controller="StudentsCtrl">
 
-      <div class= "row">
+      <div class= "row" ng-show="students.length">
         <div class= "column-md-12">
 
 
@@ -25,13 +25,11 @@
 
       <div class= "row">
         <div class= "column-md-12">
-
-          <h2>Student List</h2>
-
-
+          <h2 ng-show="students.length && filtered.length">Student List</h2>
+          <h2 ng-show="students.length && !filtered.length">No Results Found</h2>
 
             <ul>
-            <li ng-repeat="item in students | filter:query">
+            <li ng-repeat="item in filtered = (students | filter:query)">
 
               <span ng-click="editing = true" ng-hide="editing">
                 {{ item.name }} <a ng-click="deleteStudent(item)">Delete Student</a>
