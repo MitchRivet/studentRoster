@@ -9,12 +9,29 @@
   </head>
   <body>
     <div class="container" ng-controller="StudentsCtrl">
+
+      <div class= "row">
+        <div class= "column-md-12">
+
+
+          <h4>Search Students</h4>
+          <form class="form-inline" role="form">
+            <div class="form-group">
+              <input ng-model="query" type="text" class="form-control" placeholder="Search">
+            </div>
+          </form>
+        </div>
+      </div>
+
       <div class= "row">
         <div class= "column-md-12">
 
           <h2>Student List</h2>
+
+
+
             <ul>
-            <li ng-repeat="item in students">
+            <li ng-repeat="item in students | filter:query">
 
               <span ng-click="editing = true" ng-hide="editing">
                 {{ item.name }} <a ng-click="deleteStudent(item)">Delete Student</a>
